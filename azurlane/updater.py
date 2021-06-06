@@ -60,7 +60,7 @@ class AzurApiUpdater:
         with open(file, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
-    def update(self):
+    def update(self, force=False):
 
         ship_list = requests.get(SHIP_LIST).json()
         equipment_list = requests.get(EQUIPMENT_LIST).json()
@@ -90,7 +90,7 @@ class AzurApiUpdater:
         updates = self.checkForNewUpdate()
 
         for i in range(len(updates)):
-            if updates[i]:
+            if updates[i] or force:
                 self.__download_data(self.files[i], lists[i])
 
     def updateEquipmentsData(self):
