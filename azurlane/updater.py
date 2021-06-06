@@ -45,6 +45,8 @@ class AzurApiUpdater:
             repo_version = [version_info["ships"]["version-number"],
                             version_info["equipments"]["version-number"]]
 
+            self.__download_data(self.version_file, version_info)
+
             # If local version is less than repo version, an update is needed
             # Therefore, True is appended to the list
             for i in range(len(local_version)):
